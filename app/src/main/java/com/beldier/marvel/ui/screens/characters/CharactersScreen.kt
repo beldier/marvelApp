@@ -5,6 +5,7 @@ package com.beldier.marvel.ui.screens
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -25,7 +26,7 @@ import com.beldier.marvel.data.repositories.CharactersRepository
 
 
 @Composable
-fun CharactersScreen(){
+fun CharactersScreen(onClick: (Character) -> Unit){
     var charactersState by rememberSaveable{
         mutableStateOf(emptyList<Character>())
     }
@@ -33,26 +34,31 @@ fun CharactersScreen(){
         charactersState = CharactersRepository.getCharacters()
     }
 
-    CharactersScreen(charactersState)
+    CharactersScreen(
+        characters = charactersState,
+        onClick = onClick
+    )
 }
 
 @ExperimentalFoundationApi
 @Composable
-fun CharactersScreen(characters: List<Character>) {
+fun CharactersScreen(characters: List<Character>, onClick: (Character) -> Unit) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(180.dp),
         contentPadding = PaddingValues(4.dp)
     ) {
         items(characters) {
-            CharacterItem(it)
+            CharacterItem(character = it, modifier = Modifier.clickable {
+                onClick(it)
+            })
         }
     }
 }
 
 @Composable
-fun CharacterItem(character: Character) {
+fun CharacterItem(character: Character, modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.padding(8.dp)
+        modifier = modifier.padding(8.dp)
     ) {
         Card {
             Image(
@@ -73,19 +79,3 @@ fun CharacterItem(character: Character) {
     }
 }
 
-@Preview
-@Composable
-fun CharactersScreenPreview() {
-    val characters =
-        (1..10).map {
-            com.beldier.marvel.data.models.Character(
-                id = it,
-                name = "Name $it",
-                description = "Description",
-                thumbnail = "https://via.placehold.com/150x225/FFFF00/000000?text=name$it"
-            )
-        }
-    MarvelApp {
-        CharactersScreen(characters)
-    }
-}

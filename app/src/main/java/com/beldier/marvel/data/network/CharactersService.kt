@@ -3,6 +3,7 @@ package com.beldier.marvel.data.network
 import com.beldier.marvel.data.network.models.ApiResponse
 import com.beldier.marvel.data.network.models.Character
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CharactersService {
@@ -12,4 +13,9 @@ interface CharactersService {
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): ApiResponse<Character>
+
+    @GET("/v1/public/characters/{characterId}")
+    suspend fun findCharacter(
+        @Path("characterId") characterId: Int
+    ) : ApiResponse<Character>
 }
