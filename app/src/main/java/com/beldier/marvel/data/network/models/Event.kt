@@ -1,5 +1,5 @@
 package com.beldier.marvel.data.network.models
 
-class Event {
-
-}
+class Event (
+    val name:String
+)
