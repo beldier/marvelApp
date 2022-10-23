@@ -17,14 +17,15 @@ fun Navigation() {
         navController = navController,
         startDestination = NavItem.Characters.route
     ) {
-        composable(NavItem.Characters){
+        composable(NavItem.Characters) {
             CharactersScreen(onClick = { character ->
                 navController.navigate(NavItem.CharacterDetail.createNavRoute(character.id))
             })
         }
-        
-        composable(NavItem.CharacterDetail){
-            CharacterDetailScreen(it.findArg<Int>(NavArg.ItemId) )
+
+        composable(NavItem.CharacterDetail) {
+            val id = it.findArg<Int>(NavArg.ItemId)
+            CharacterDetailScreen(id = id, onUpClick = { navController.popBackStack() })
         }
     }
 }

@@ -9,10 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material.icons.filled.Bookmark
-import androidx.compose.material.icons.filled.Collections
-import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,37 +24,49 @@ import com.beldier.marvel.MarvelApp
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.models.Character
 import com.beldier.marvel.data.models.Reference
+import com.beldier.marvel.ui.navigation.ArrowBackIcon
 
 @Composable
-fun CharacterDetailScreen(id: Int) {
-
+fun CharacterDetailScreen(id: Int, onUpClick: () -> Unit) {
     var characterState by remember { mutableStateOf<Character?>(null) }
     LaunchedEffect(Unit) {
         characterState = CharactersRepository.findCharacter(id)
     }
     characterState?.let { c ->
-        CharacterDetailScreen(c)
+        CharacterDetailScreen(character = c, onUpClick = onUpClick)
     }
 
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CharacterDetailScreen(character: Character) {
-    LazyColumn(modifier = Modifier.fillMaxWidth()) {
-        item {
-            Header(character)
+fun CharacterDetailScreen(character: Character, onUpClick: () -> Unit) {
+    Scaffold(
+        topBar = { TopAppBar(
+            title = { Text(character.name) },
+            navigationIcon = { ArrowBackIcon(onUpClick) },
+            actions = {
+                IconButton(onClick = {}) {
+                    Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More actions")
+                }
+            })
+    }) {
+        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            item {
+                Header(character)
+            }
+            section(Icons.Default.Collections, "Series", character.series)
+            section(Icons.Default.Event, "Events", character.events)
+            section(Icons.Default.Book, " Comics", character.comics)
+            section(Icons.Default.Bookmark, "Stories", character.stories)
         }
-        section(Icons.Default.Collections, "Series", character.series)
-        section(Icons.Default.Event, "Events", character.events)
-        section(Icons.Default.Book, " Comics", character.comics)
-        section(Icons.Default.Bookmark,  "Stories", character.stories)
     }
+
 }
 
 @ExperimentalMaterialApi
 fun LazyListScope.section(icon: ImageVector, name: String, items: List<Reference>) {
-    if(items.isEmpty()) return
+    if (items.isEmpty()) return
     item {
         Text(
             text = name,
@@ -110,7 +119,7 @@ fun Header(character: Character) {
 @Preview(widthDp = 400, heightDp = 700)
 @Composable
 fun CharacterDetailScreenPreview() {
-    val character = Character(
+    val c = Character(
         id = 1,
         name = "Iron Man",
         description = "Lorem ipsum asd1231231 312 3213 1231 23",
@@ -121,6 +130,6 @@ fun CharacterDetailScreenPreview() {
         listOf(Reference("Comic 1"), Reference("Comic 2")),
     )
     MarvelApp {
-        CharacterDetailScreen(character)
+        CharacterDetailScreen(character = c, onUpClick = {})
     }
 }
