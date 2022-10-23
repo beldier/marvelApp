@@ -2,6 +2,7 @@ package com.beldier.marvel.data.repositories
 
 import com.beldier.marvel.data.models.Character
 import com.beldier.marvel.data.models.Reference
+import com.beldier.marvel.data.models.Url
 import com.beldier.marvel.data.network.models.Character as NetworkCharacter
 
 import com.beldier.marvel.data.network.ApiClient
@@ -27,12 +28,13 @@ fun NetworkCharacter.asCharacter(): Character {
     val series = series.items.map { Reference(it.name) }
     val events = events.items.map { Reference(it.name) }
     val stories = stories.items.map { Reference(it.name) }
+    val urls = urls.map { Url(it.type,it.url) }
     return Character(
         id,
         name,
         description,
         thumbnail.asString(),
         comics,
-        events, stories, series
+        events, stories, series, urls
     )
 }

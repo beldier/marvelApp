@@ -9,4 +9,6 @@ data class Character(
     val events: List<Reference>,
     val stories: List<Reference>,
     val series: List<Reference>,
+    val urls: List<Url>
+
 )

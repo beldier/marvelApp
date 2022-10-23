@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalProvider
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,16 +42,16 @@ fun CharacterDetailScreen(id: Int, onUpClick: () -> Unit) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CharacterDetailScreen(character: Character, onUpClick: () -> Unit) {
+
     Scaffold(
-        topBar = { TopAppBar(
-            title = { Text(character.name) },
-            navigationIcon = { ArrowBackIcon(onUpClick) },
-            actions = {
-                IconButton(onClick = {}) {
-                    Icon(imageVector = Icons.Default.MoreVert, contentDescription = "More actions")
-                }
-            })
-    }) {
+        topBar = {
+            TopAppBar(
+                title = { Text(character.name) },
+                navigationIcon = { ArrowBackIcon(onUpClick) },
+                actions = { 
+                    AppBarOverflowMenu(urls = character.urls)
+                })
+        }) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             item {
                 Header(character)
@@ -116,20 +117,20 @@ fun Header(character: Character) {
 
 }
 
-@Preview(widthDp = 400, heightDp = 700)
-@Composable
-fun CharacterDetailScreenPreview() {
-    val c = Character(
-        id = 1,
-        name = "Iron Man",
-        description = "Lorem ipsum asd1231231 312 3213 1231 23",
-        thumbnail = "",
-        listOf(Reference("Comic 1"), Reference("Comic 2")),
-        listOf(Reference("Comic 1"), Reference("Comic 2")),
-        listOf(Reference("Comic 1"), Reference("Comic 2")),
-        listOf(Reference("Comic 1"), Reference("Comic 2")),
-    )
-    MarvelApp {
-        CharacterDetailScreen(character = c, onUpClick = {})
-    }
-}
+//@Preview(widthDp = 400, heightDp = 700)
+//@Composable
+//fun CharacterDetailScreenPreview() {
+//    val c = Character(
+//        id = 1,
+//        name = "Iron Man",
+//        description = "Lorem ipsum asd1231231 312 3213 1231 23",
+//        thumbnail = "",
+//        listOf(Reference("Comic 1"), Reference("Comic 2")),
+//        listOf(Reference("Comic 1"), Reference("Comic 2")),
+//        listOf(Reference("Comic 1"), Reference("Comic 2")),
+//        listOf(Reference("Comic 1"), Reference("Comic 2")),
+//    )
+//    MarvelApp {
+//        CharacterDetailScreen(character = c, onUpClick = {})
+//    }
+//}
