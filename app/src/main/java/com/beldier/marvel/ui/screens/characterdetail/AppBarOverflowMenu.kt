@@ -10,6 +10,7 @@ import com.beldier.marvel.data.models.Url
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun AppBarOverflowMenu(urls: List<Url>) {
+    if(urls.isEmpty()) return
     var showMenu by remember { mutableStateOf(false) }
     val uriHandler = LocalUriHandler.current
     IconButton(onClick = { showMenu = true }) {

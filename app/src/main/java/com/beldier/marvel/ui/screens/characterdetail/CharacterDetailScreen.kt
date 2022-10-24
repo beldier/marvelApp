@@ -17,11 +17,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalProvider
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import coil.compose.rememberImagePainter
 import com.beldier.marvel.MarvelApp
+import com.beldier.marvel.R
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.models.Character
 import com.beldier.marvel.data.models.Reference
@@ -42,16 +45,8 @@ fun CharacterDetailScreen(id: Int, onUpClick: () -> Unit) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CharacterDetailScreen(character: Character, onUpClick: () -> Unit) {
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(character.name) },
-                navigationIcon = { ArrowBackIcon(onUpClick) },
-                actions = { 
-                    AppBarOverflowMenu(urls = character.urls)
-                })
-        }) {
+    CharacterDetailScaffold(character = character, onUpClick = onUpClick)
+    {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             item {
                 Header(character)
@@ -64,6 +59,8 @@ fun CharacterDetailScreen(character: Character, onUpClick: () -> Unit) {
     }
 
 }
+
+
 
 @ExperimentalMaterialApi
 fun LazyListScope.section(icon: ImageVector, name: String, items: List<Reference>) {
