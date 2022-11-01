@@ -2,10 +2,12 @@ package com.beldier.marvel.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.beldier.marvel.ui.screens.CharactersScreen
 import com.beldier.marvel.ui.screens.characterdetail.CharacterDetailScreen
 
@@ -15,21 +17,36 @@ fun Navigation() {
 
     NavHost(
         navController = navController,
-        startDestination = NavItem.Characters.route
+        startDestination = Feature.CHARACTERS.route
     ) {
-        composable(NavItem.Characters) {
-            CharactersScreen(onClick = { character ->
-                navController.navigate(NavItem.CharacterDetail.createNavRoute(character.id))
-            })
-        }
-
-        composable(NavItem.CharacterDetail) {
-            val id = it.findArg<Int>(NavArg.ItemId)
-            CharacterDetailScreen(id = id, onUpClick = { navController.popBackStack() })
-        }
+        charactersNav(navController)
     }
 }
 
+private fun NavGraphBuilder.charactersNav(navController: NavController) {
+    navigation(
+        startDestination = NavItem.ContentType(Feature.CHARACTERS).route,
+        route = Feature.CHARACTERS.route
+    ) {
+        composable(NavItem.ContentType(Feature.CHARACTERS)) {
+            CharactersScreen(
+                onClick = { character ->
+                    navController.navigate(
+                        NavItem.ContentDetail(Feature.CHARACTERS).createRoute(character.id)
+                    )
+                }
+            )
+        }
+
+        composable(NavItem.ContentDetail(Feature.CHARACTERS)) {
+            val id = it.findArg<Int>(NavArg.ItemId)
+            CharacterDetailScreen(
+                id = id,
+                onUpClick = { navController.popBackStack() }
+            )
+        }
+    }
+}
 
 private fun NavGraphBuilder.composable(
     navItem: NavItem,

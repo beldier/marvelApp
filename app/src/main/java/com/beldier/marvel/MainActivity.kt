@@ -16,7 +16,6 @@ import com.beldier.marvel.ui.screens.CharactersScreen
 import com.beldier.marvel.ui.theme.MarvelTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
