@@ -30,8 +30,8 @@ object ApiClient {
         .build()
 
     val charactersService: CharactersService = restAdapter.create()
-//    val comicsService: ComicsService = restAdapter.create()
-//    val eventsService: EventsService = restAdapter.create()
+    val comicsService: ComicsService = restAdapter.create()
+    val eventsService: EventsService = restAdapter.create()
 }
 
 private class QueryInterceptor : Interceptor {

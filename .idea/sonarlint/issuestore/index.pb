@@ -1,9 +1,17 @@
 
-…
-Uapp/src/main/java/com/beldier/marvel/ui/screens/characterdetail/AppBarOverflowMenu.kt,c\1\c16fbb7442c59a5ef78a0e3f3ce7e4545c5c7152
+s
+Capp/src/main/java/com/beldier/marvel/ui/navigation/ArrowBackIcon.kt,7\2\72c4949c05ef387fdca70496beab52593a975e73
+p
+@app/src/main/java/com/beldier/marvel/data/network/models/Data.kt,2\2\2202c40f13d7acde86f5d8dc021b4fb370e82f32
+q
+Aapp/src/main/java/com/beldier/marvel/data/network/models/Serie.kt,1\0\100cf42f26fb55f4f81d0256a71c57ba6df3d1a5
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+n
+>app/src/main/java/com/beldier/marvel/data/models/MarvelItem.kt,9\5\9501843f97819e3030844176b2eeb4dc3370282d
+m
+=app/src/main/java/com/beldier/marvel/data/models/Character.kt,0\f\0fcf95427f7626b57e495272d2f16b2bafd7568e
+z
+Japp/src/main/java/com/beldier/marvel/data/repositories/ComicsRepository.kt,7\5\75b280f67ff0ca142a5cde7b69c8042a0a345c28
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-f
-6app/src/main/java/com/beldier/marvel/ui/theme/Theme.kt,6\6\66920fa9fe7a37e166d4d95e7bc48a38726f0d67
