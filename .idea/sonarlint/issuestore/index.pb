@@ -13,5 +13,3 @@ m
 =app/src/main/java/com/beldier/marvel/data/models/Character.kt,0\f\0fcf95427f7626b57e495272d2f16b2bafd7568e
 z
 Japp/src/main/java/com/beldier/marvel/data/repositories/ComicsRepository.kt,7\5\75b280f67ff0ca142a5cde7b69c8042a0a345c28
-<
-build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
