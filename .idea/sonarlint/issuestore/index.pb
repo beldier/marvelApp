@@ -45,7 +45,5 @@ d
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 i
 9app/src/main/java/com/beldier/marvel/data/models/Comic.kt,f\f\ff00a2bda2290481d8c094a715e64df388c66fbe
-s
-Capp/src/main/java/com/beldier/marvel/ui/navigation/DrawerContent.kt,4\8\480d106e69d1abfab181bfe118bd3f725282eee4
 d
 4app/src/main/java/com/beldier/marvel/ui/MarvelApp.kt,4\e\4e9183118da91a8384f336c6e2bce88856dd3106
