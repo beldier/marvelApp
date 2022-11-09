@@ -6,9 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import com.beldier.marvel.data.models.Character
 import com.beldier.marvel.data.models.Comic
 import com.beldier.marvel.data.models.Event
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.repositories.ComicsRepository
 import com.beldier.marvel.data.repositories.EventsRepository
@@ -38,6 +40,6 @@ class ComicDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
 
     data class UIState(
         val loading: Boolean = false,
-        val comic: Comic? = null
+        val comic: Result<Comic?> = Either.Right(null)
     )
 }

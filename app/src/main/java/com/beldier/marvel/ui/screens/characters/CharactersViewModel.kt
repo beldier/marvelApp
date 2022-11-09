@@ -3,6 +3,8 @@ package com.beldier.marvel.ui.screens.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.right
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.CharactersRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,6 +27,6 @@ class CharactersViewModel : ViewModel() {
 
     data class UIState(
         val loading: Boolean = false,
-        val items: List<com.beldier.marvel.data.models.Character> = emptyList()
+        val items: Result<List<com.beldier.marvel.data.models.Character>> = emptyList<com.beldier.marvel.data.models.Character>().right()
     )
 }

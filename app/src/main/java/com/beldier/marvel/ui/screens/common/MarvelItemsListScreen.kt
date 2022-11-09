@@ -16,18 +16,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.beldier.marvel.data.models.MarvelItem
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.ui.MarvelScreen
 
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun <T : MarvelItem> MarvelItemsListScreen(loading: Boolean = false, items: List<T>, onClick: (T) -> Unit) {
-    MarvelItemsList(
-        loading = loading,
-        items = items,
-        onItemClick = onClick,
-    )
+fun <T : MarvelItem> MarvelItemsListScreen(
+    loading: Boolean = false,
+    items: Result<List<T>>,
+    onClick: (T) -> Unit
+) {
+    items.fold( { ErrorMessage(it)} ){
+        MarvelItemsList(
+            loading = loading,
+            items = it,
+            onItemClick = onClick,
+        )
+    }
+
 }
 
 @ExperimentalCoilApi

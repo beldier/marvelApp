@@ -1,22 +1,17 @@
 package com.beldier.marvel.ui.screens.events
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.beldier.marvel.data.models.Character
+import arrow.core.Either
 import com.beldier.marvel.data.models.Event
-import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.repositories.EventsRepository
 import com.beldier.marvel.ui.navigation.NavArg
-import com.beldier.marvel.ui.screens.characters.CharacterDetailViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-
+import  com.beldier.marvel.data.models.Result
 /*
 SavedStateHandle is passed automatically, no need for factory
  */
@@ -36,6 +31,6 @@ class EventDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
 
     data class UIState(
         val loading: Boolean = false,
-        val event: Event? = null
+        val event: Result<Event?> = Either.Right(null)
     )
 }

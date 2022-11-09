@@ -13,8 +13,6 @@ p
 @app/src/main/java/com/beldier/marvel/ui/navigation/AppBarIcon.kt,0\0\000dea48382c93a04bcb60512249b3fa7602f925
 e
 5app/src/main/java/com/beldier/marvel/ui/theme/Type.kt,4\1\410d0517d97917f06f199ef0c19666784a9f5ae2
-~
-Napp/src/main/java/com/beldier/marvel/data/repositories/CharactersRepository.kt,6\5\6520ceb69b80c066e6ca1e42e519b88507e68785
 g
 7app/src/main/java/com/beldier/marvel/data/models/Url.kt,5\1\51f341aeb1a27cc08ba1441864dc640a1b786d10
 i
@@ -43,8 +41,6 @@ m
 =app/src/main/java/com/beldier/marvel/ui/navigation/NavItem.kt,7\1\715c93ec6a47c19bc430cfd81ad6b9c3007828df
 d
 4app/src/main/java/com/beldier/marvel/MainActivity.kt,5\3\53e51c522ec104e12a8fd6ee3b74ca955536bfcb
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 i

@@ -8,6 +8,8 @@ import com.beldier.marvel.data.models.Comic
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import arrow.core.right
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.ComicsRepository
 
 class ComicsViewModel : ViewModel() {
@@ -16,7 +18,7 @@ class ComicsViewModel : ViewModel() {
 
     data class UIState(
         val loading: Boolean = false,
-        val comics: List<Comic> = emptyList()
+        val comics: Result<List<Comic>> = emptyList<Comic>().right()
     )
 
     fun formatRequested(format : Comic.Format){

@@ -1,11 +1,12 @@
 package com.beldier.marvel.data.repositories
 
 import com.beldier.marvel.data.models.Character
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.network.ApiClient
 
-object CharactersRepository : Repository<com.beldier.marvel.data.models.Character>() {
+object CharactersRepository : Repository<Character>() {
 
-    suspend fun get(): List<Character> = super.get {
+    suspend fun get(): Result<List<Character>> = super.get {
         ApiClient
             .charactersService
             .getCharacters(0, 100)
@@ -14,7 +15,7 @@ object CharactersRepository : Repository<com.beldier.marvel.data.models.Characte
             .map { it.asCharacter() }
     }
 
-    suspend fun find(id: Int): Character = super.find(
+    suspend fun find(id: Int): Result<Character> = super.find(
         id,
         findActionRemote = {
             ApiClient

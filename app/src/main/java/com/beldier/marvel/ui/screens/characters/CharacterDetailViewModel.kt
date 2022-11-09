@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import com.beldier.marvel.data.models.Character
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.ui.navigation.NavArg
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,6 +37,6 @@ class CharacterDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel()
 
     data class UIState(
         val loading: Boolean = false,
-        val character: Character? = null
+        val character: Result<Character?> = Either.Right(null)
     )
 }

@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.right
 import com.beldier.marvel.data.models.Event
+import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.repositories.EventsRepository
 import com.beldier.marvel.ui.screens.characters.CharacterDetailViewModel
@@ -29,6 +31,6 @@ class EventsViewModel:ViewModel() {
 
     data class UIState(
         val loading: Boolean = false,
-        val items: List<Event> = emptyList()
+        val items: Result<List<Event>> = emptyList<Event>().right()
     )
 }

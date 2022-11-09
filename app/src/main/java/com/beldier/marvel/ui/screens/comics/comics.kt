@@ -17,6 +17,7 @@ import com.beldier.marvel.ui.screens.common.MarvelItemsList
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.beldier.marvel.ui.screens.common.ErrorMessage
 
 @ExperimentalPagerApi
 @ExperimentalCoilApi
@@ -40,11 +41,15 @@ fun ComicsScreen(onClick: (Comic) -> Unit, viewModel: ComicsViewModel = viewMode
             viewModel.formatRequested(format)
             // to avoid usage of .value use by
             val pageState by viewModel.state.getValue(format)
-            MarvelItemsList(
-                loading = pageState.loading,
-                items = pageState.comics,
-                onItemClick = onClick
-            )
+
+            pageState.comics.fold({ErrorMessage(it)}){
+
+                MarvelItemsList(
+                    loading = pageState.loading,
+                    items = it,
+                    onItemClick = onClick
+                )
+            }
         }
     }
 
