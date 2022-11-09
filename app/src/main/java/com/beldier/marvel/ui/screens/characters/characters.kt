@@ -16,9 +16,10 @@ fun CharactersScreen(
     onClick: (com.beldier.marvel.data.models.Character) -> Unit,
     viewModel: CharactersViewModel = viewModel()
 ) {
+    val state by viewModel.state.collectAsState()
     MarvelItemsListScreen(
-        loading = viewModel.state.loading,
-        items = viewModel.state.items,
+        loading = state.loading,
+        items = state.items,
         onClick = onClick
     )
 }

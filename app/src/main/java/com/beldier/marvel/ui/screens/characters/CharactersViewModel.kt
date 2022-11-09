@@ -6,19 +6,22 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.beldier.marvel.data.repositories.CharactersRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 
 class CharactersViewModel : ViewModel() {
 
-    var state by mutableStateOf(UIState())
-        private set
+    private val _state  = MutableStateFlow(UIState())
+    val state: StateFlow<UIState> = _state.asStateFlow()
 
 
     init {
         viewModelScope.launch {
-            state = UIState(loading = true)
-            state = UIState(items = CharactersRepository.get())
+            _state.value = UIState(loading = true)
+            _state.value = UIState(items = CharactersRepository.get())
         }
     }
 

@@ -16,18 +16,13 @@ import com.beldier.marvel.ui.screens.common.MarvelItemDetailScreen
 import com.beldier.marvel.ui.screens.common.MarvelItemsList
 import com.google.accompanist.pager.*
 import kotlinx.coroutines.launch
-
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @ExperimentalPagerApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun ComicsScreen(onClick: (Comic) -> Unit) {
-
-    var comicsState by remember { mutableStateOf(emptyList<Comic>()) }
-    LaunchedEffect(Unit) {
-        comicsState = ComicsRepository.get()
-    }
+fun ComicsScreen(onClick: (Comic) -> Unit, viewModel: ComicsViewModel = viewModel()) {
 
     val formats = Comic.Format.values().toList()
     val pagerState = rememberPagerState()
@@ -40,10 +35,14 @@ fun ComicsScreen(onClick: (Comic) -> Unit) {
         HorizontalPager(
             count = formats.size,
             state = pagerState
-        ) {
+        ) { page ->
+            val format = formats[page]
+            viewModel.formatRequested(format)
+            // to avoid usage of .value use by
+            val pageState by viewModel.state.getValue(format)
             MarvelItemsList(
-                loading = false,
-                items = comicsState,
+                loading = pageState.loading,
+                items = pageState.comics,
                 onItemClick = onClick
             )
         }
@@ -98,12 +97,10 @@ private fun Comic.Format.toStringRes(): Int = when (this) {
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
-fun ComicDetailScreen(comicId: Int) {
-    var comicState by remember { mutableStateOf<Comic?>(null) }
-    LaunchedEffect(Unit) {
-        comicState = ComicsRepository.find(comicId)
-    }
-    comicState?.let {
-        MarvelItemDetailScreen(marvelItem = it)
-    }
+fun ComicDetailScreen(viewModel: ComicDetailViewModel = viewModel()) {
+    MarvelItemDetailScreen(
+        loading = viewModel.state.loading,
+        marvelItem = viewModel.state.comic
+    )
+
 }
