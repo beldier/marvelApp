@@ -1,4 +1,4 @@
-package com.beldier.marvel.ui.screens
+package com.beldier.marvel.ui.screens.comics
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -42,6 +42,7 @@ fun ComicsScreen(onClick: (Comic) -> Unit) {
             state = pagerState
         ) {
             MarvelItemsList(
+                loading = false,
                 items = comicsState,
                 onItemClick = onClick
             )
@@ -103,6 +104,6 @@ fun ComicDetailScreen(comicId: Int) {
         comicState = ComicsRepository.find(comicId)
     }
     comicState?.let {
-        MarvelItemDetailScreen(it)
+        MarvelItemDetailScreen(marvelItem = it)
     }
 }

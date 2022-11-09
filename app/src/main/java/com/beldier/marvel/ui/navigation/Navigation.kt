@@ -9,6 +9,12 @@ import androidx.navigation.compose.composable
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.beldier.marvel.ui.screens.*
+import com.beldier.marvel.ui.screens.characters.CharacterDetailScreen
+import com.beldier.marvel.ui.screens.characters.CharactersScreen
+import com.beldier.marvel.ui.screens.comics.ComicDetailScreen
+import com.beldier.marvel.ui.screens.comics.ComicsScreen
+import com.beldier.marvel.ui.screens.events.EventDetailScreen
+import com.beldier.marvel.ui.screens.events.EventsScreen
 
 
 @ExperimentalPagerApi
@@ -48,8 +54,7 @@ private fun NavGraphBuilder.charactersNav(navController: NavController) {
         }
 
         composable(NavCommand.ContentTypeDetail(Feature.CHARACTERS)) {
-            val id = it.findArg<Int>(NavArg.ItemId)
-            CharacterDetailScreen(characterId = id)
+            CharacterDetailScreen()
         }
     }
 }
