@@ -98,9 +98,10 @@ private fun Comic.Format.toStringRes(): Int = when (this) {
 @ExperimentalMaterialApi
 @Composable
 fun ComicDetailScreen(viewModel: ComicDetailViewModel = viewModel()) {
+    val state by viewModel.state.collectAsState()
     MarvelItemDetailScreen(
-        loading = viewModel.state.loading,
-        marvelItem = viewModel.state.comic
+        loading = state.loading,
+        marvelItem = state.comic
     )
 
 }

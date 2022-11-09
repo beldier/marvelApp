@@ -11,6 +11,10 @@ import com.beldier.marvel.data.models.Event
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.repositories.EventsRepository
 import com.beldier.marvel.ui.navigation.NavArg
+import com.beldier.marvel.ui.screens.characters.CharacterDetailViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 /*
@@ -19,13 +23,13 @@ SavedStateHandle is passed automatically, no need for factory
 class EventDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
     private val id = savedStateHandle.get<Int>(NavArg.ItemId.key) ?: 0
 
-    var state by mutableStateOf(UIState())
-        private set
+    private val _state  = MutableStateFlow(UIState())
+    val state: StateFlow<UIState> = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            state = UIState(loading = true)
-            state = UIState(event = EventsRepository.find(id))
+            _state.value = UIState(loading = true)
+            _state.value = UIState(event = EventsRepository.find(id))
         }
     }
 

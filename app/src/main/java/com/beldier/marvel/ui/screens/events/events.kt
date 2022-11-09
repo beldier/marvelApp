@@ -14,9 +14,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @ExperimentalFoundationApi
 @Composable
 fun EventsScreen(onClick: (Event) -> Unit, viewModel: EventsViewModel = viewModel()) {
+    val state by viewModel.state.collectAsState()
     MarvelItemsListScreen(
-        items = viewModel.state.items,
-        loading = viewModel.state.loading,
+        items = state.items,
+        loading = state.loading,
         onClick = onClick
     )
 }
@@ -25,8 +26,9 @@ fun EventsScreen(onClick: (Event) -> Unit, viewModel: EventsViewModel = viewMode
 @ExperimentalMaterialApi
 @Composable
 fun EventDetailScreen(viewModel: EventDetailViewModel = viewModel()) {
+    val state by viewModel.state.collectAsState()
     MarvelItemDetailScreen(
-        loading = viewModel.state.loading,
-        marvelItem = viewModel.state.event
+        loading = state.loading,
+        marvelItem = state.event
     )
 }

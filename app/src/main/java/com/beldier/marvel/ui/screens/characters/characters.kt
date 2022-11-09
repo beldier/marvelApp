@@ -28,6 +28,7 @@ fun CharactersScreen(
 @ExperimentalMaterialApi
 @Composable
 fun CharacterDetailScreen(viewModel: CharacterDetailViewModel = viewModel()) {
-    MarvelItemDetailScreen(loading = false, marvelItem = viewModel.state.character)
+    val state by viewModel.state.collectAsState()
+    MarvelItemDetailScreen(loading = false, marvelItem = state.character)
 
 }
