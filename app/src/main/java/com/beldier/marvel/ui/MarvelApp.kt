@@ -10,15 +10,15 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.tooling.preview.Preview
 import coil.annotation.ExperimentalCoilApi
 import com.beldier.marvel.R
 import com.beldier.marvel.ui.navigation.*
 import com.beldier.marvel.ui.theme.MarvelTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
-import kotlinx.coroutines.launch
 
 
+@Preview
 @ExperimentalPagerApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi

@@ -9,6 +9,7 @@ import com.beldier.marvel.ui.screens.common.MarvelItemDetailScreen
 import com.beldier.marvel.ui.screens.common.MarvelItemsListScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 
+@OptIn(ExperimentalMaterialApi::class)
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
