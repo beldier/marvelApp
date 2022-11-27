@@ -13,8 +13,6 @@ g
 7app/src/main/java/com/beldier/marvel/data/models/Url.kt,5\1\51f341aeb1a27cc08ba1441864dc640a1b786d10
 i
 9app/src/main/java/com/beldier/marvel/data/models/Event.kt,b\5\b5709f0f6e4faad8dbc5f3b0574d89028e1d181a
-f
-6app/src/main/java/com/beldier/marvel/ui/theme/Theme.kt,6\6\66920fa9fe7a37e166d4d95e7bc48a38726f0d67
 q
 Aapp/src/main/java/com/beldier/marvel/data/network/models/Event.kt,3\0\30bd1371ef880b3e1241b55616d6c09c53b806d6
 y
@@ -45,8 +43,6 @@ m
 =app/src/main/java/com/beldier/marvel/data/models/Character.kt,0\f\0fcf95427f7626b57e495272d2f16b2bafd7568e
 n
 >app/src/main/java/com/beldier/marvel/data/models/MarvelItem.kt,9\5\9501843f97819e3030844176b2eeb4dc3370282d
-d
-4app/src/main/java/com/beldier/marvel/MainActivity.kt,5\3\53e51c522ec104e12a8fd6ee3b74ca955536bfcb
 m
 =app/src/main/java/com/beldier/marvel/ui/navigation/NavItem.kt,7\1\715c93ec6a47c19bc430cfd81ad6b9c3007828df
 i
@@ -61,8 +57,6 @@ r
 Bapp/src/main/java/com/beldier/marvel/data/network/EventsService.kt,9\4\94d71777a5bcb4a4c674cfcc9d842ec2f0e8c4ff
 w
 Gapp/src/main/java/com/beldier/marvel/data/network/models/ApiResponse.kt,7\4\74dd6c105fe974e9cb4a04c09f9e9a5a56d2866a
-d
-4app/src/main/java/com/beldier/marvel/ui/MarvelApp.kt,4\e\4e9183118da91a8384f336c6e2bce88856dd3106
 t
 Dapp/src/main/java/com/beldier/marvel/data/repositories/Repository.kt,b\6\b6b137e8fb5e63a428231ee10a78c197ef6f6c3d
 ~
@@ -75,5 +69,15 @@ z
 Japp/src/main/java/com/beldier/marvel/data/repositories/ComicsRepository.kt,7\5\75b280f67ff0ca142a5cde7b69c8042a0a345c28
 x
 Happ/src/main/java/com/beldier/marvel/ui/screens/comics/ComicViewModel.kt,b\8\b810145ac921f42cc14b328e7841fad22e08423b
-Ä
-Papp/src/main/java/com/beldier/marvel/ui/screens/common/MarvelItemDetailScreen.kt,2\7\27945ddc6def7bce93771999051bfdb477ccdfe8
+r
+Bapp/src/main/java/com/beldier/marvel/data/network/ComicsService.kt,d\3\d33f63bbea8bd449294032b7090fb48d26bd2004
+i
+9app/src/main/java/com/beldier/marvel/data/models/Error.kt,b\5\b5e7e0a6a698e40e5e1d5357f25273ddd0c33cf3
+s
+Capp/src/main/java/com/beldier/marvel/ui/navigation/DrawerContent.kt,4\8\480d106e69d1abfab181bfe118bd3f725282eee4
+x
+Happ/src/main/java/com/beldier/marvel/ui/screens/characters/characters.kt,0\2\02eb66f022e94b3957dd6630a4cb34a52f59a70c
+Å
+Qapp/src/main/java/com/beldier/marvel/ui/screens/characters/CharactersViewModel.kt,b\9\b96da1ed6acc65f30233a1b4d4c1973621351b6e
+x
+Happ/src/main/java/com/beldier/marvel/ui/screens/common/MarvelListItem.kt,f\5\f53ad221420b4995d3a2fd8bae5b3d728fd76951

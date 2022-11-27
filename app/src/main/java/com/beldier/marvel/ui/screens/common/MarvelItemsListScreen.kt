@@ -2,6 +2,7 @@ package com.beldier.marvel.ui.screens.common
 
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
@@ -37,7 +38,7 @@ fun <T : MarvelItem> MarvelItemsListScreen(
         val sheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
         val scope = rememberCoroutineScope()
 
-        BackPressedHandler(sheetState.isVisible) {
+        BackHandler {
             scope.launch { sheetState.hide() }
         }
 
@@ -70,25 +71,16 @@ fun <T : MarvelItem> MarvelItemsListScreen(
 }
 
 @Composable
-fun BackPressedHandler(enabled: Boolean, onBack:()-> Unit){
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val backDispatcher = requireNotNull(LocalOnBackPressedDispatcherOwner.current).onBackPressedDispatcher
-    val backCallback = remember {
-        object: OnBackPressedCallback(enabled){
-            override fun handleOnBackPressed() {
-                onBack()
-            }
+fun MyComposable(){
+    val x = remember { mutableStateOf(0) }
+    val y = remember { mutableStateOf(2) }
 
-        }
-    }
-    // Side effect is always called on recomposition
-    SideEffect {
-        backCallback.isEnabled = enabled
-    }
-    DisposableEffect(lifecycleOwner, backDispatcher){
-        backDispatcher.addCallback(lifecycleOwner, backCallback )
-        onDispose { backCallback.remove() }
-    }
+    // z an z2 do the same but underhodd z2 hold a memory space
+    // while z only dependes on changes by x and y
+    // use derivedstateof when operaction has an elevated cost
+    val z = derivedStateOf { x.value + y.value }
+    val z2 =  remember(x, y) { x.value + y.value}
+
 }
 
 @ExperimentalCoilApi
