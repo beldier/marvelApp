@@ -7,8 +7,6 @@ A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 p
 @app/src/main/java/com/beldier/marvel/ui/navigation/AppBarIcon.kt,0\0\000dea48382c93a04bcb60512249b3fa7602f925
-e
-5app/src/main/java/com/beldier/marvel/ui/theme/Type.kt,4\1\410d0517d97917f06f199ef0c19666784a9f5ae2
 g
 7app/src/main/java/com/beldier/marvel/data/models/Url.kt,5\1\51f341aeb1a27cc08ba1441864dc640a1b786d10
 i
