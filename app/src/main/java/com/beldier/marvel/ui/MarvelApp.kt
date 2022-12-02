@@ -9,13 +9,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import coil.annotation.ExperimentalCoilApi
 import com.beldier.marvel.R
 import com.beldier.marvel.ui.navigation.*
 import com.beldier.marvel.ui.theme.MarvelTheme
+import com.beldier.marvel.ui.theme.RedDark
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
 @Preview
@@ -36,7 +40,7 @@ fun MarvelApp() {
                         if (appState.showUpNavigation) {
                             AppBarIcon(
                                 imageVector = Icons.Default.ArrowBack,
-                                onClick = { appState.onUpClick()})
+                                onClick = { appState.onUpClick() })
                         } else {
                             AppBarIcon(
                                 imageVector = Icons.Default.Menu,
@@ -72,6 +76,21 @@ fun MarvelApp() {
                 Navigation(appState.navController)
             }
         }
+        SetStatusBarColorEffect()
+
+    }
+}
+
+@Composable
+fun SetStatusBarColorEffect(
+    color: Color = MaterialTheme.colors.primaryVariant,
+    systemUiController: SystemUiController = rememberSystemUiController()
+){
+
+    SideEffect {
+        systemUiController.setSystemBarsColor(
+            color = color
+        )
     }
 }
 
