@@ -17,11 +17,13 @@ import com.beldier.marvel.ui.MarvelApp
 import com.beldier.marvel.ui.navigation.Navigation
 import com.beldier.marvel.ui.theme.MarvelTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagerApi
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,12 +11,15 @@ import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.CharactersRepository
 import com.beldier.marvel.data.repositories.EventsRepository
 import com.beldier.marvel.ui.screens.characters.CharacterDetailViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EventsViewModel:ViewModel() {
+@HiltViewModel
+class EventsViewModel @Inject constructor(repository: EventsRepository) : ViewModel() {
 
     private val _state  = MutableStateFlow(UIState())
     val state: StateFlow<UIState> = _state.asStateFlow()
@@ -25,7 +28,7 @@ class EventsViewModel:ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UIState(loading = true)
-            _state.value = UIState(items = EventsRepository.get())
+            _state.value = UIState(items = repository.get())
         }
     }
 

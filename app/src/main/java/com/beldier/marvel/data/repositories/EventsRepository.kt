@@ -2,14 +2,14 @@ package com.beldier.marvel.data.repositories
 
 import com.beldier.marvel.data.models.Event
 import com.beldier.marvel.data.models.Result
-import com.beldier.marvel.data.network.ApiClient
+import com.beldier.marvel.data.network.EventsService
+import javax.inject.Inject
 
 
-object EventsRepository : Repository<Event>() {
+class EventsRepository @Inject constructor(private val service: EventsService) : Repository<Event>() {
 
     suspend fun get(): Result<List<Event>> = super.get {
-        ApiClient
-            .eventsService
+        service
             .getEvents(0, 100)
             .data
             .results
@@ -19,8 +19,7 @@ object EventsRepository : Repository<Event>() {
     suspend fun find(id: Int): Result<Event> = super.find(
         id,
         findActionRemote = {
-            ApiClient
-                .eventsService
+            service
                 .findEvent(id)
                 .data
                 .results

@@ -12,10 +12,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import  com.beldier.marvel.data.models.Result
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+
 /*
 SavedStateHandle is passed automatically, no need for factory
  */
-class EventDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
+@HiltViewModel
+class EventDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, repository: EventsRepository) : ViewModel() {
     private val id = savedStateHandle.get<Int>(NavArg.ItemId.key) ?: 0
 
     private val _state  = MutableStateFlow(UIState())
@@ -24,7 +28,7 @@ class EventDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
     init {
         viewModelScope.launch {
             _state.value = UIState(loading = true)
-            _state.value = UIState(event = EventsRepository.find(id))
+            _state.value = UIState(event = repository.find(id))
         }
     }
 

@@ -3,6 +3,7 @@ package com.beldier.marvel.ui.screens.events
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.beldier.marvel.data.models.Event
 import com.beldier.marvel.data.repositories.EventsRepository
@@ -14,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun EventsScreen(onClick: (Event) -> Unit, viewModel: EventsViewModel = viewModel()) {
+fun EventsScreen(onClick: (Event) -> Unit, viewModel: EventsViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
     MarvelItemsListScreen(
         items = state.items,
@@ -26,7 +27,7 @@ fun EventsScreen(onClick: (Event) -> Unit, viewModel: EventsViewModel = viewMode
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
-fun EventDetailScreen(viewModel: EventDetailViewModel = viewModel()) {
+fun EventDetailScreen(viewModel: EventDetailViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
     MarvelItemDetailScreen(
         loading = state.loading,

@@ -8,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.beldier.marvel.R
 import com.beldier.marvel.data.models.Comic
@@ -23,7 +24,7 @@ import com.beldier.marvel.ui.screens.common.ErrorMessage
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun ComicsScreen(onClick: (Comic) -> Unit, viewModel: ComicsViewModel = viewModel()) {
+fun ComicsScreen(onClick: (Comic) -> Unit, viewModel: ComicsViewModel = hiltViewModel()) {
 
     val formats = Comic.Format.values().toList()
     val pagerState = rememberPagerState()
@@ -103,7 +104,7 @@ private fun Comic.Format.toStringRes(): Int = when (this) {
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
-fun ComicDetailScreen(viewModel: ComicDetailViewModel = viewModel()) {
+fun ComicDetailScreen(viewModel: ComicDetailViewModel = hiltViewModel()) {
     val state by viewModel.state.collectAsState()
     MarvelItemDetailScreen(
         loading = state.loading,

@@ -16,15 +16,18 @@ import com.beldier.marvel.data.repositories.ComicsRepository
 import com.beldier.marvel.data.repositories.EventsRepository
 import com.beldier.marvel.ui.navigation.NavArg
 import com.beldier.marvel.ui.screens.characters.CharacterDetailViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /*
 SavedStateHandle is passed automatically, no need for factory
  */
-class ComicDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
+@HiltViewModel
+class ComicDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, repository: ComicsRepository) : ViewModel() {
     private val id = savedStateHandle.get<Int>(NavArg.ItemId.key) ?: 0
 
     private val _state  = MutableStateFlow(UIState())
@@ -33,7 +36,7 @@ class ComicDetailViewModel(savedStateHandle: SavedStateHandle) : ViewModel(){
     init {
         viewModelScope.launch {
             _state.value = UIState(loading = true)
-            _state.value = UIState(comic = ComicsRepository.find(id))
+            _state.value = UIState(comic = repository.find(id))
         }
     }
 

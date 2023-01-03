@@ -1,6 +1,5 @@
 package com.beldier.marvel.ui.screens.comics
 
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,8 +10,11 @@ import androidx.compose.runtime.getValue
 import arrow.core.right
 import com.beldier.marvel.data.models.Result
 import com.beldier.marvel.data.repositories.ComicsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ComicsViewModel : ViewModel() {
+@HiltViewModel
+class ComicsViewModel @Inject constructor(private val repository: ComicsRepository) : ViewModel() {
 
     val state = Comic.Format.values().associateWith { mutableStateOf(UIState()) }
 
@@ -27,7 +29,7 @@ class ComicsViewModel : ViewModel() {
 
         viewModelScope.launch {
             uiState.value = UIState(loading = true)
-            uiState.value = UIState( comics = ComicsRepository.get(format))
+            uiState.value = UIState( comics = repository.get(format))
         }
     }
 }

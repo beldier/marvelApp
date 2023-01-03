@@ -47,7 +47,9 @@ private fun NavGraphBuilder.charactersNav(navController: NavController) {
             CharactersScreen(
                 onClick = { character ->
                     navController.navigate(
-                        NavCommand.ContentTypeDetail(Feature.CHARACTERS).createRoute(character.id)
+                        NavCommand.
+                        ContentTypeDetail(Feature.CHARACTERS).
+                        createRoute(character.id)
                     )
                 }
             )

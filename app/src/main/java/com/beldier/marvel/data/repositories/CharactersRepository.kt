@@ -2,13 +2,13 @@ package com.beldier.marvel.data.repositories
 
 import com.beldier.marvel.data.models.Character
 import com.beldier.marvel.data.models.Result
-import com.beldier.marvel.data.network.ApiClient
+import com.beldier.marvel.data.network.CharactersService
+import javax.inject.Inject
 
-object CharactersRepository : Repository<Character>() {
+class CharactersRepository @Inject constructor(private val service: CharactersService) : Repository<Character>() {
 
     suspend fun get(): Result<List<Character>> = super.get {
-        ApiClient
-            .charactersService
+        service
             .getCharacters(0, 100)
             .data
             .results
@@ -18,8 +18,7 @@ object CharactersRepository : Repository<Character>() {
     suspend fun find(id: Int): Result<Character> = super.find(
         id,
         findActionRemote = {
-            ApiClient
-                .charactersService
+            service
                 .findCharacter(id)
                 .data
                 .results
